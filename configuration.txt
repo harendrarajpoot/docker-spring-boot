@@ -1,0 +1,43 @@
+step1.Create Spring boot application
+========================================
+  
+create simple spring boot project add spring web dependency.
+  
+step2 .Build a simple REST API
+==========================
+create A Rest api
+
+@GetMapping("/welcome")
+	public String welcome(){
+		return "Spring Boot Docker Demo";
+	}
+
+step 3: Build Jar File
+=======================
+build jar file of your application.
+
+  1. add <packaging>jar</packaging> tag in your pox.xml file
+  2. right click on your project  run as maven build
+
+
+4.Create Dockerfile
+==========================
+create docker file parallel your project directory
+Example: SpringBootDemo
+          Dockerfile
+
+write text in below mentions
+
+FROM openjdk:11
+COPY target/your-jar-file-name  your-application-name.jar
+ENTRYPOINT ["java", "-jar", "your-application-name.jar"]
+
+  
+step 5.Build Docker Image
+docker build -t docker-image-name:latest .
+  
+step 6.Run Docker Image in a Container
+docker run -p 8081:8080 docker-image-name
+
+
+
